@@ -1,4 +1,8 @@
 date,count,raw count,adjusted count,remarks,Source
+1969-01-01,4,,,,http://www.netvalley.com/archives/mirrors/davemarsh-timeline-1.htm
+1971-01-01,23,,,,http://www.netvalley.com/archives/mirrors/davemarsh-timeline-1.htm
+1972-01-01,40,,,,http://www.netvalley.com/archives/mirrors/davemarsh-timeline-1.htm
+1977-01-01,100,,,,http://www.netvalley.com/archives/mirrors/davemarsh-timeline-1.htm
 1981-08-01,213,213,N/A,host table,https://web.archive.org/web/20010330090639/http://www.isc.org/ds/host-count-history.html
 1982-05-01,235,235,N/A,,https://web.archive.org/web/20010330090639/http://www.isc.org/ds/host-count-history.html
 1983-08-01,562,562,N/A,,https://web.archive.org/web/20010330090639/http://www.isc.org/ds/host-count-history.html
