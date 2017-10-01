@@ -6,3 +6,7 @@ This is a collected count of hosts on the internet, from http://ftp.isc.org/www/
 Contributions are welcome, to fill in details about the early internet and to keep the data current.  It might also be appropriate to include other related datasets.
 
 To generate the graphs from the supplied data, ensure that gnuplot is installed and on the path, then run "make all".  It will create a "target" directory with svg and png versions.
+
+Where it Goes
+=============
+Contribute the log svg here: https://commons.wikimedia.org/wiki/File:Internet_Hosts_Count_log.svg
