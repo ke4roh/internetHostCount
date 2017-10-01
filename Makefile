@@ -14,7 +14,7 @@ pnglog: target
 	sed s/svg/png/ <InternetHostCount.gp | gnuplot
 
 per100: target
-	gnuplot <InternetHostsPer100Inhabitants.gp
+	gnuplot <InternetUsersPer100Inhabitants.gp
 
 all: svglog pnglog svglinear pnglinear per100
 
