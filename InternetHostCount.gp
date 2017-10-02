@@ -4,11 +4,13 @@
 
 set term svg size 800,600 font "DejaVu Sans,16"
 set output 'target/InternetHostsCountLog.svg'
+set terminal svg enhanced background rgb 'white'
  
 set xdata time
 set timefmt "%Y-%m"
 set format x "%Y"
 set logscale y
+set format y '%.0s %c'
 # set yrange [100:1.5e+9]
  
 set grid x y

@@ -8,12 +8,15 @@ set output 'target/InternetUsersPer100Inhabitants.svg'
 set xdata time
 set timefmt "%Y"
 set format x "%Y"
+set mxtics 2
 
 set key top left
 set key autotitle columnhead 
 set grid x y
 set title 'Internet Users Per 100 Inhabitants'
 set xtics rotate
+
+set terminal svg enhanced background rgb 'white'
  
 set datafile separator ","
 plot for [col=2:4] 'InternetUsersPer100Inhabitants.csv' using 1:col with lines, \
