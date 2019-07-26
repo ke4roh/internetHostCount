@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+
+import csv
+from datetime import datetime,date
+import urllib3
+import re
+
+source_url = 'http://ftp.isc.org/www/survey/reports/current/'
+local_file = 'InternetHostCount.csv'
+
+# First, check the existing file to see what the latest date is
+last_date = date.min
+columns = None
+with open(local_file,'r',newline='') as count_file:
+    counts_reader = csv.DictReader(count_file,dialect='unix')
+    for row in counts_reader:
+       columns = row.keys()
+       d = datetime.strptime(row['date'],'%Y-%m-%d').date()
+       if d > last_date:
+           last_date = d
+
+print("Last date already known: " + str(last_date))
+# print(str(columns))
+# Then fetch the latest report and collect its new information
+new_counts=dict()
+entry_pattern=re.compile(r'^\s*((?:Jan|Jul) \d{4})\|\s*([0-9,]*)',re.MULTILINE)
+http = urllib3.PoolManager()
+r = http.request('GET', source_url)
+assert r.status == 200
+for m in re.finditer(entry_pattern,r.data.decode('iso-8859-1')):
+    dt=datetime.strptime(m.group(1) + ' 01','%b %Y %d').date()
+    if dt>last_date:
+       count=int(m.group(2).replace(",",""))
+       new_counts[dt]=count
+
+if new_counts:
+    with open(local_file,'a',newline='') as out:
+        writer = csv.DictWriter(out,fieldnames=columns,dialect='unix',quoting=csv.QUOTE_NONE)
+        dates = sorted(list(new_counts.keys()))
+        for date in dates:
+            writer.writerow({
+                'date': date.isoformat(), 
+                'count': new_counts[date],
+                'Source': source_url
+                })
+    print("Added %d row(s). Check the diff, commit, make all, and upload new files." % len(new_counts))
+else:
+    print("Nothing new found; no updates.")
